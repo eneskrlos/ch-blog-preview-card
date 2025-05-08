@@ -9,47 +9,62 @@
   <title>Frontend Mentor | Blog preview card</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
-      margin: 0%;
-      padding: 0%;
+      margin: 0;
+      padding: 0;
     }
     body {
       font-family: 'Outfit', sans-serif;
       background-color: hsl(46.99deg 88.3% 63.14%);
-      height: 100vh;
+      min-height: 100vh;
+
+      display: flex; /* Para centrar el contenido principal y el footer */
+      flex-direction: column; /* Para apilar main y footer verticalmente */
+      justify-content: center; /* Centra el main si hay espacio extra */
+      align-items: center; /* Centra el main horizontalmente */
+      padding: 20px;
+    }
+
+    main {
+      flex-grow: 1; /* Permite que main ocupe el espacio disponible */
+      display: grid; /* Mantenemos grid para centrar la tarjeta si es necesario */
+      place-items: center; /* Manera corta de centrar en grid */
+      width: 100%; /* Ocupa el ancho disponible */
     }
     .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      justify-items: center;
-      align-items: center;
-      padding: 20px;
-      margin: 0 auto;
-      max-width: 1200px;
-      height: calc(100vh - 40px);
+      max-width: 350px;
     }
     .card {
       background-color: white;
-      border-radius: 10px;
+      border-radius: 20px;
       
       border: 1px solid  black;
-      box-shadow: 8px 7px 2px 1px rgba(0, 0, 0, 0.9);
+      box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
       width: 350px;
+      max-width: 100%;
       overflow: hidden;
       padding: 1.5rem;
+      margin: 1rem 0;
     }
     .card-image {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 10px;
     }
-    .card-head-title {
-      font-size: 1rem;
-      font-weight: 600;
+
+    .card-header-content {
+      margin-bottom: 1rem; /* Espacio antes del título principal */
+    }
+    .card-category  {
+      font-size: 0.875rem;
+      font-weight: 800;
       margin: 1rem 0;
       color: black;
       background-color: hsl(46.99deg 88.3% 63.14%);
@@ -57,19 +72,25 @@
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
-    .card-head-sub-title {
+    .card-publish-date {
       font-size: 0.8rem;
       font-weight: 500;
       color: black;
-      margin-bottom: 1rem;
+      
     }
     .card-info {
       margin: 1rem 0;
     }
     .card-title {
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 800;
       color: black;
       margin-bottom: 1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .card-title:hover {
+      color: hsl(46.99deg 88.3% 63.14%);
     }
     .card-description {
       font-size: 0.9rem;
@@ -81,60 +102,78 @@
     .author-info {
       display: flex;
       align-items: center;
-      margin-bottom: 0.5rem;
     }
     .author-image {
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      margin-right: 1rem;
+      margin-right: 0.75rem;
+    }
+
+    footer {
+      width: 100%;
+      padding: 10px 0;
     }
     .author-name {
       font-size: 0.9rem;
       font-weight: 600;
       color: hsl(0, 0%, 3%);
     }
-    @media (max-width: 768px) {
+
+    .attribution { font-size: 11px; text-align: center; text-wrap: normal; margin-top: 20px;  }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+
+    @media (max-width: 400px) {
       .card {
         width: 90%;
         margin: 0 auto;
       }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .card-description {
+        font-size: 0.875rem;
+      }
     }
 
-    .attribution { font-size: 11px; text-align: center; text-wrap: normal; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-
+    
     @media screen and (max-width: 400px) {
       .attribution { 
         font-size: 10px; 
         text-align: center;
-        margin-top: 0%;
       }
       
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <img src="./assets/images/illustration-article.svg" alt="Imagen article" class="card-image">
-      <head>
-        <p class="card-head-title">Lerning</p>
-        <p class="card-head-sub-title">Published 21 Dec 2023.</p>
-      </head>
-      <div class="card-info">
-        <h3 class="card-title">HTML & CSS foundations</h3>
-        <p class="card-description">  These languages are the backbone of every website, defining structure, content, and presentation. </p>
-      </div>
-      <foot class="author-info">
-        <img src="./assets/images/image-avatar.webp" alt="Author" class="author-image">
-        <p class="author-name">Jules Wyvern</p>
-      </foot>
-    </div>  
-  </div>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="https://github.com/eneskrlos/ch-blog-preview-card">Ernesto Carlos</a>.
-  </div>
+  <main>
+    <div class="container">
+      <div class="card">
+        <img src="./assets/images/illustration-article.svg" alt="Imagen article" class="card-image">
+        <div class="card-header-content">
+          <p class="card-category">Lerning</p>
+          <p class="card-publish-date">Published 21 Dec 2023.</p>
+        </div>
+        <div class="card-info">
+          <h1 class="card-title">HTML & CSS foundations</h1>
+          <p class="card-description">  These languages are the backbone of every website, defining structure, content, and presentation. </p>
+        </div>
+        <div class="author-info">
+          <img src="./assets/images/image-avatar.webp" alt="Author" class="author-image">
+          <p class="author-name">Jules Wyvern</p>
+        </div>
+      </div>  
+    </div>
+  </main>
+  <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://github.com/eneskrlos/ch-blog-preview-card">Ernesto Carlos</a>.
+    </div>
+  </footer>
 </body>
 </html>
